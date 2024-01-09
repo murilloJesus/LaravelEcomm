@@ -17,8 +17,8 @@ class CreateProductsTable extends Migration
             $table->id();
             $table->string('title')->index();
             $table->string('slug')->unique();
-            $table->text('summary')->index();
-            $table->longText('description')->nullable()->index();
+            $table->text('summary');
+            $table->longText('description')->nullable();
             $table->text('photo');
             $table->integer('stock')->default(1);
             $table->string('color')->nullable();
