@@ -40,16 +40,7 @@ class AttributeValue extends Core
         return $this->belongsTo(Attribute::class);
     }
 
-    public function getValueAttribute()
-    {
-        $type = $this->attribute->type;
-        return match ($type) {
-            Attribute::TYPE_URL => $this->url_value,
-            Attribute::TYPE_HEX => $this->hex_value,
-            Attribute::TYPE_TEXT => $this->text_value,
-            default => null,
-        };
-    }
+   
 
     public function products(): BelongsToMany
     {

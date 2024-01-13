@@ -1,7 +1,7 @@
 @if ($product->exists)
     <form class="form-horizontal" method="POST" action="{{ route('products.update', $product->id) }}"
           enctype="multipart/form-data">
-        @method('put')
+        @method('POST')
         @csrf
         @else
             <form class="form-horizontal" method="POST" action="{{ route('products.store') }}"
@@ -13,19 +13,21 @@
                         <label for="inputTitle" class="col-form-label">Title <span class="text-danger">*</span></label>
                         <input id="inputTitle" type="text" name="title" placeholder="Enter title"
                                value="{{ $product->title ?? '' }}"
-                               class="form-control">
+                               class="form-control"
+                               required
+                               >
                     </div>
                     <div class="input-group col-6">
                         <div class="image">
                             <label for="inputTitle" class="col-form-label">Image <span
                                         class="text-danger">*</span></label>
-                            <input type="file" class="form-control" name="photo">
+                            <input type="file" class="form-control" name="photo" required>
                         </div>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="summary" class="col-form-label">Summary <span class="text-danger">*</span></label>
-                    <textarea class="form-control" id="summary" name="summary">{{$product->summary ?? ''}}</textarea>
+                    <textarea class="form-control" id="summary" name="summary" required>{{$product->summary ?? ''}}</textarea>
                 </div>
 
                 <div class="form-group">
@@ -44,7 +46,7 @@
                     <div class="col-md-6">
                         <label for="cat_id">Category <span class="text-danger">*</span></label>
                         <select class="form-control js-example-basic-multiple" id="category" name="category[]"
-                                multiple="multiple">
+                                multiple="multiple" required>
                             @foreach ($categories as $category)
                                 <option value="{{ $category->id }}">{{ $category->title }}</option>
                             @endforeach
@@ -54,7 +56,7 @@
                     <div class="col-md-6">
                         <label for="price" class="col-form-label">Price(NRS) <span class="text-danger">*</span></label>
                         <input id="price" type="number" name="price" placeholder="Enter price"
-                               value="{{ $product->price ?? '' }}" class="form-control">
+                               value="{{ $product->price ?? '' }}" class="form-control" required>
                     </div>
                 </div>
                 <div class="form-group row">
@@ -76,7 +78,7 @@
                 <div class="form-group">
                     <label for="size">Tags</label>
                     <select class="form-control js-example-basic-multiple" id="tags" name="tag[]"
-                            multiple="multiple">
+                            multiple="multiple" required>
                         @foreach ($tags as $tag)
                             <option value="{{ $tag->id }}">{{ $tag->title }}</option>
                         @endforeach
@@ -84,7 +86,7 @@
                 </div>
                 <div class="form-group">
                     <label for="condition_id">Condition</label>
-                    <select name="condition_id" class="form-control">
+                    <select name="condition_id" class="form-control" required>
                         <option value="">--Select condition--</option>
                         @foreach($conditions as $condition)
                             <option value="{{$condition->id}}"@if (!empty($product->condition->id))

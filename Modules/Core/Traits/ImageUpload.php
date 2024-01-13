@@ -4,8 +4,8 @@ namespace Modules\Core\Traits;
 
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
-use Intervention\Image\ImageManagerStatic as Image;
-
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver;
 trait ImageUpload
 {
     /**
@@ -47,14 +47,12 @@ trait ImageUpload
 
     public function resizeImage($find_image, $size, $destination): void
     {
-        $resized_image = Image::make($find_image)->resize(
-            $size,
-            null,
-            function ($constraint) {
-                $constraint->aspectRatio();
-            }
-        );
 
-        $resized_image->save($destination);
+        $manager = new ImageManager(new Driver());
+        $image = $manager->read($find_image);
+        $image->scale(width: 300);
+        $image->toPng()->save($destination);
+
+
     }
 }
