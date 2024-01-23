@@ -79,7 +79,10 @@ class ProductController extends CoreController
 
     public function destroy(Product $product): JsonResponse
     {
+      
+
         $this->product_service->destroy($product->id);
+      
         return $this
             ->setMessage(
                 __(

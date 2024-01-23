@@ -22139,7 +22139,7 @@ Version:1.0
 }
 .header .nav li a i {
 	margin-left: 6px;
-	font-size: 10px;
+	font-size: 25px;
 }
 /* Dropdown Menu */
 .header .nav li .dropdown {
@@ -22826,6 +22826,10 @@ Version:1.0
 	line-height: 18px;
 	text-align: center;
 	display: block;
+}
+
+.header.shop .main-category {
+    max-height: 150px !important;
 }
 .header.shop.v2 .nav li a{
 	color:#333;
@@ -26908,7 +26912,7 @@ Version:1.0
 	padding: 15px 15px;
 }
 .header .nav li a i {
-	font-size: 8px;
+	font-size: 25px;
 }
 .header.shop .nav li .new {
 	font-size: 8px;

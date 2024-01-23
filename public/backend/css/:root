@@ -1,0 +1,14 @@
+:root {
+    --color-primary: #033F63;
+    --color-secondary: #6F58C9;
+    --color-tertiary: #BBD0D9;
+    --color-quaternary: #8A7E58;
+    --color-backyard: #C1623C;
+  
+    --color-text: #ffffff; 
+    --color-text-secondary: #333333; 
+    --color-text-tertiary: #999999; 
+  
+    --color-shadow: rgba(0, 0, 0, 0.2); 
+  }
+  

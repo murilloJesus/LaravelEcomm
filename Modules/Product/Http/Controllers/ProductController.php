@@ -15,6 +15,7 @@ use Modules\Product\Import\Products as ProductImport;
 use Modules\Product\Models\Product;
 use Modules\Product\Service\ProductService;
 use PhpOffice\PhpSpreadsheet\Exception;
+use Illuminate\Support\Facades\Cache;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 class ProductController extends CoreController
@@ -39,15 +40,26 @@ class ProductController extends CoreController
         return view('product::create')->with($this->product_service->create());
     }
 
+   
+
     public function store(Request $request): RedirectResponse
     {
+        $cacheKey = 'search_'.md5(json_encode([]));
+
         $this->product_service->store($request->all());
+
+        Cache::forget($cacheKey);
+
+
         return redirect()->route('products.index');
     }
 
     public function edit(Product $product): Renderable
     {
+        $cacheKey = 'search_'.md5(json_encode([]));
         return view('product::edit')->with($this->product_service->edit($product->id));
+        Cache::forget($cacheKey);
+        
     }
 
     public function update(Update $request, Product $product): RedirectResponse

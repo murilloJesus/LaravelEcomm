@@ -110,3 +110,10 @@
 
 <p style="text-align:center">Thank You so much for your time !!!</p>
 
+_________________________________________
+
+Implementações Leon
+
+Dentro do Modulo Front exite um carinha chamado Header - ele deve ser implmentado em todas as telas
+da loja pois ele representa o Menu
+@include('front::layouts.header')

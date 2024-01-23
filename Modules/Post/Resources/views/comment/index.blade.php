@@ -39,7 +39,7 @@
                             <tr>
                                 <td>{{$comment->id}}</td>
                                 <td>{{$comment->user_info['name']}}</td>
-                                <td>{{$comment->post['title']}}</td>
+                                <td>{{$comment->post['title'] ?? "not title"}}</td>
                                 <td>{{$comment->comment}}</td>
                                 <td>{{$comment->created_at->format('M d D, Y g: i a')}}</td>
                                 <td>

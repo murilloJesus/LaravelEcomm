@@ -33,6 +33,7 @@ class ProductService extends CoreService
 
     public function create(): array
     {
+        
         return [
             'brands' => Brand::get(),
             'categories' => Category::get(),
@@ -49,13 +50,14 @@ class ProductService extends CoreService
      */
     public function store(array $data): Product
     {
+        
         $this->handleColor($data);
 
         if (isset($data['photo'])) {
             $data['photo'] = $this->verifyAndStoreImage($data['photo']);
         }
         $product = $this->product_repository->create($data);
-        $this->syncAttributes($product, $data['attributes']); // Assuming 'attributes' is the input name
+        $this->syncAttributes($product, $data['attributes']); 
         $product->categories()->attach($data['category']);
         if (isset($data['size'])) {
             $product->sizes()->attach($data['size']);

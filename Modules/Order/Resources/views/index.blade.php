@@ -25,7 +25,8 @@
                             <th>Shipping</th>
                             <th>Total Amount</th>
                             <th>Status</th>
-                            <th>Action</th>
+                            <th>view</th>
+                            <th>edit our delete</th>
                         </tr>
                         </thead>
                         <tfoot>
@@ -63,10 +64,12 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <a href="{{route('orders.show',$order->id)}}"
+                                <a href="{{route('orders.show',$order->id)}}"
                                        class="btn btn-warning btn-sm float-left mr-1"
                                        style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip"
                                        title="view" data-placement="bottom"><i class="fas fa-eye"></i></a>
+                                </td>
+                                <td>
                                     <a href="{{route('orders.edit',$order->id)}}"
                                        class="btn btn-primary btn-sm float-left mr-1"
                                        style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip"

@@ -26,11 +26,16 @@ class ProductRepository extends Repository
      */
     public function update($id, array $data): mixed
     {
+        $cacheKey = 'search_'.md5(json_encode([]));
+
         $item = $this->findById($id);
         $item->fill($data);
         $item->save();
 
+        Cache::forget($cacheKey);
         return $item->fresh();
+
+
     }
 
     /**
@@ -50,6 +55,7 @@ class ProductRepository extends Repository
 
     public function search(array $data): mixed
     {
+
         $cacheKey = 'search_'.md5(json_encode($data));
 
         return Cache::remember($cacheKey, 86400, function () use ($data) {
@@ -113,5 +119,21 @@ class ProductRepository extends Repository
                 ->get();
         });
     }
+
+    public function delete($id): void
+    {
+        $cacheKey = 'search_'.md5(json_encode([]));
+
+        $this->model::destroy($id);
+        
+        Cache::forget($cacheKey);
+    }
+
+
+
+   
+
+   
+   
 
 }

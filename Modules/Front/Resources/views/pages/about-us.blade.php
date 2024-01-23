@@ -227,5 +227,5 @@
     </section>
     <!-- End Shop Services Area -->
 
-    @include('front::layouts.newsletter')
+    
 @endsection
