@@ -19,7 +19,5 @@ Route::prefix('admin')->middleware(['auth',])->group(function () {
     Route::get('/{user}/impersonate', [UserController::class, 'impersonate'])->name('users.impersonate');
     Route::get('/leave-impersonate', [UserController::class, 'leaveImpersonate'])->name('users.leave-impersonate');
 });
-Route::prefix('user')->middleware(['auth',])->group(function () {
-    Route::get('user-profile', [UserController::class, 'profile'])->name('user-profile');
-    Route::post('/profile/{id}', [UserController::class, 'profileUpdate'])->name('profile-update');
-});
+
+

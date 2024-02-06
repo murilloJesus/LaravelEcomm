@@ -117,10 +117,7 @@ class UserController extends Controller
     /**
      * @return Application|Factory|View
      */
-    public function profile()
-    {
-        return view('user::profile', ['profile' => Auth()->user()]);
-    }
+ 
 
     /**
      * @param  User  $user
