@@ -38,19 +38,33 @@
                                     <div class="navbar-collapse">
                                         <div class="nav-inner">
                                             <ul class="nav main-menu menu navbar-nav">
-
-                                               
-                                                    <div class="col-lg-4">
-                                                        <div>
-                                                            <a href="{{ route('home') }}"><img src="images/logo.png" alt=""></a>
-                                                        </div>
+                                                <div class="col-lg-4">
+                                                    <div>
+                                                        <a href="{{ route('home') }}"><img src="images/logo.png" alt=""></a>
                                                     </div>
-                                                 
+                                                </div>
+                                             
+                                                
+                                                @auth
+                                                    @if(Auth::user()->hasRole('super-admin'))
+                                                        <li> <a href="{{route('admin')}}" target="_blank">DASHBOARD</a></li>
+                                                    @else
+                                                    <!-- Aqui estava a rota como user -->
+                                                        <li> <a href="{{route('admin')}}" target="_blank">DASHBOARD</a></li>
+                                                    @endif
+                                                        <li><a href="{{route('logout')}}">LOGOUT</a></li>
+                                                    @else
+                                                        <li><a href="{{route('login')}}">LOGIN</a> </li>
+                                                        <li><a href="{{route('register')}}">REGISTRAR</a></li>
+                                                @endauth
                                          
 
                                                 <li class="@if(Request::path()=='product-grids'||Request::path()=='product-lists')  active  @endif">
                                                     <a href="{{route('product-grids')}}">PRODUTOS</a><span
                                                             class="new">Novos</span></li>
+
+                                                
+
                                                 <li class="{{Request::path()=='contact' ? 'active' : ''}}"><a
                                                             href="{{route('contact')}}">ENTRE EM CONTATO</a></li>
                                             </ul>
